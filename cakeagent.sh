@@ -55,8 +55,8 @@ minutes=$(( uptime/60%60 ))
 hours=$(( uptime/60/60%24 ))
 days=$(( uptime/60/60/24 ))
 # Hard Drive Information
-hdd=`df -t xfs --total | grep total | awk '{print $3}'`
-thdd=`df -t xfs --total | grep total | awk '{print $2}'`
+hdd=`df -t xfs -t ext4 --total | grep total | awk '{print $3}'`
+thdd=`df -t xfs -t ext4 --total | grep total | awk '{print $2}'`
 drives=`df -H -P -B G | grep -vE '^Filesystem|tmpfs|cdrom|nfs|origin' | awk '{ printf  $3 "|" $2 "|" $1 ":"}'`
 # Running processes
 process=`ps aux | grep -v "]\$" | grep -v "/pod" | awk '{ gsub("%","%%",$0); printf  $1 "|" $2 "|" $3 "|" $4 "|" $5 "|" $6 "|" $11 ":::"}'`
